@@ -1,0 +1,5 @@
+server = "https://harbor.local:8443"
+
+[host."https://10.96.203.246:443"]
+  capabilities = ["pull", "resolve"]
+  skip_verify = true

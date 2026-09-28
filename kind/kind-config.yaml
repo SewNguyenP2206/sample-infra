@@ -1,0 +1,31 @@
+kind: Cluster
+apiVersion: kind.x-k8s.io/v1alpha4
+name: desktop
+containerdConfigPatches:
+  - |-
+    [plugins."io.containerd.grpc.v1.cri".registry]
+      config_path = "/etc/containerd/certs.d"
+nodes:
+  - role: control-plane
+    labels:
+      ingress-ready: "true"
+    extraPortMappings:
+      - containerPort: 80
+        hostPort: 8080
+      - containerPort: 443
+        hostPort: 8443
+    extraMounts:
+      - hostPath: /home/phu_local/enterprise/containerd-config
+        containerPath: /etc/containerd/certs.d
+  - role: worker
+    extraMounts:
+      - hostPath: /home/phu_local/enterprise/containerd-config
+        containerPath: /etc/containerd/certs.d
+  - role: worker
+    extraMounts:
+      - hostPath: /home/phu_local/enterprise/containerd-config
+        containerPath: /etc/containerd/certs.d
+  - role: worker
+    extraMounts:
+      - hostPath: /home/phu_local/enterprise/containerd-config
+        containerPath: /etc/containerd/certs.d

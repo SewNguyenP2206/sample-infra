@@ -1,0 +1,36 @@
+controller:
+  admin:
+    username: admin
+    password: "admin12345"
+  serviceType: ClusterIP
+  ingress:
+    enabled: true
+    ingressClassName: nginx
+    annotations:
+      cert-manager.io/cluster-issuer: selfsigned-issuer
+    hostName: jenkins.local
+    tls:
+      - secretName: jenkins-tls
+        hosts:
+          - jenkins.local
+  installPlugins:
+    - kubernetes:latest
+    - workflow-aggregator:latest
+    - git:latest
+    - configuration-as-code:latest
+    - gitea:latest
+  resources:
+    requests:
+      cpu: "500m"
+      memory: "1Gi"
+    limits:
+      cpu: "1"
+      memory: "2Gi"
+  javaOpts: "-Xms512m -Xmx1024m"
+
+persistence:
+  enabled: true
+  size: 5Gi
+
+agent:
+  enabled: true

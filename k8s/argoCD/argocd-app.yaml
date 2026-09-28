@@ -1,0 +1,18 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: sample-backend
+  namespace: argocd
+spec:
+  project: default
+  source:
+    repoURL: https://github.com/SewNguyenP2206/manifests-sample-backend.git
+    targetRevision: main
+    path: apps/sample-backend
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: sample-backend
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true

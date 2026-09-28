@@ -1,0 +1,5 @@
+server = "https://harbor.local:443"
+
+[host."https://harbor.local:443"]
+  capabilities = ["pull", "resolve"]
+  skip_verify = true
