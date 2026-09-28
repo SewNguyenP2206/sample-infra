@@ -384,7 +384,7 @@ install_jenkins() {
   kubectl create secret docker-registry dockerhub-creds-dockerconfig \
     --docker-server=https://index.docker.io/v1/ \
     --docker-username=sewnguyen \
-    --docker-password="dckr_pat_HoSAPhOkBSrUE2UpFNcU9Mmp28U" \
+    --docker-password="dckr_pat_#####(UR dockerhub PAT)" \
     -n jenkins --dry-run=client -o yaml | kubectl apply -f -
 
   wait_ns_ready "jenkins" 300
